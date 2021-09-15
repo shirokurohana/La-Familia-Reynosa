@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Link from 'next/link';
 import Layout from '../components/layout';
 import { getAllIds, getData } from '../lib/data';
 
@@ -23,14 +24,21 @@ export async function getStaticPaths() {
 export default function Entry({ itemData }) {
   return (
     <Layout>
-      <article class="card col-6">
+      <div class="card">
         <div class="card-body">
           <h5 class="card-title">{itemData.name}</h5>
-          <h6 class="card-subtitle mb-2 text-muted">{itemData.phone}</h6>
-          <p class="card-text">{itemData.birthdate}</p>
-          <a href={'mailto:' + itemData.email} class="card-link">{itemData.email}</a>
+            <p class="card-text">This is my family!</p>
         </div>
-      </article>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Birthdate: {itemData.birthdate}</li>
+          <li class="list-group-item">Phone number: {itemData.phone}</li>
+        </ul>
+        <div class="card-body">
+          <Link href="">
+            <a className="card-link">{itemData.email}</a> 
+          </Link>
+        </div>
+      </div>
     </Layout>
   );
 }
